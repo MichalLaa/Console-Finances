@@ -86,3 +86,74 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+// header of the table with total of months 
+console.log("Financial Analysis")         
+console.log("-------------------------------------------------------------------")
+
+  let totalMonths = finances.length;        
+
+  console.log("Total Months: " + totalMonths); 
+  
+  // Net total Profit and loss
+
+  let ProfitTotalLoss = 0;      
+  for (let i = 0; i < totalMonths; i++) {
+
+      ProfitTotalLoss += finances[i][1];       
+  }
+
+  console.log("The Net Total Profit/Loss: " + ProfitTotalLoss);  
+
+  // Ave Change 
+      
+          
+  let dateRev = [];        
+
+  let amountRev = [];      
+  
+  for (let i = totalMonths - 1; i >= 0; i--) {
+        const[date, amount] = finances[i];        
+
+        dateRev.push(date)          
+
+        amountRev.push(amount);     
+      }
+ 
+
+  let avgChanges =[]            
+  let totalAvgChanges = 0   
+
+  
+  for (let i = 0; i < totalMonths - 1; i++) {
+
+    avgChanges.push(amountRev[i] - amountRev[i+1]);    
+  
+    totalAvgChanges += avgChanges[i];       
+  }
+
+  
+
+  let totalAvgProfitLoss = totalAvgChanges / avgChanges.length;         
+
+  console.log("Average Change: " + totalAvgProfitLoss.toFixed(2));  
+  
+  // Greayest increase and decrease profits 
+
+  
+
+  let greatestProfitAmount = Math.max(...avgChanges);       
+
+  
+  let greatestProfit = dateRev[60];       
+
+  console.log("Greatest increase in Profits: " + greatestProfit + " ($"+ greatestProfitAmount + ")")        
+  
+
+
+  let greatestLossAmount = Math.min(...avgChanges);       
+  
+  
+  greatestLoss = dateRev[41];        
+
+  console.log("Greatest Decrease Profits: " + greatestLoss + " ($" + greatestLossAmount + ")" ) 
